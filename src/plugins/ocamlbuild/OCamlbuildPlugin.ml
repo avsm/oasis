@@ -156,13 +156,15 @@ let build pkg argv =
 
                  (* Add executable *)
                  let acc =
-                   match bs.bs_compiled_object with
-                     | Native ->
-                         (target ".native") :: (target ".nobj.o") ::  acc
-                     | Best when bool_of_string (is_native ()) ->
+                   match exec.exec_target, bs.bs_compiled_object with
+                     | Some t, _ ->
+                         (target ("." ^ t)) :: acc
+                     | None, Native ->
                          (target ".native") :: (target ".nobj.o") :: acc
-                     | Byte
-                     | Best ->
+                     | None, Best when bool_of_string (is_native ()) ->
+                         (target ".native") :: (target ".nobj.o") :: acc
+                     | None, Byte
+                     | None, Best ->
                          (target ".byte") :: acc
                  in
                    acc

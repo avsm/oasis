@@ -231,6 +231,10 @@ type executable =
       (** Main file to compile, dependencies should be guessed
           by build system.
         *)
+      exec_target:          string option;
+      (** Custom build target to be invoked instead of the
+          default ones for executables.
+        *)
     } 
 
 (** Command line flag definition.

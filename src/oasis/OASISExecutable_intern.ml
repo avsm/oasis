@@ -78,6 +78,14 @@ let schema, generator =
          s_ "Create custom bytecode executable.")
       (fun (_, _, exec) -> exec.exec_custom)
   in
+  let target =
+    new_field schm "Target"
+      ~default:None
+      (opt string_not_empty)
+      (fun () ->
+        s_ "Custom build target extension for this executable.")
+      (fun (_, _, exec) -> exec.exec_target)
+  in
     schm,
     (fun oasis_version nm data ->
        Executable
@@ -86,4 +94,5 @@ let schema, generator =
           {
             exec_main_is = main_is data;
             exec_custom  = custom data;
+            exec_target = target data;
           }))

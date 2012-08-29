@@ -157,6 +157,7 @@ type executable =
     {
       exec_custom:          bool;
       exec_main_is:         unix_filename;
+      exec_target:          string option;
     } with odn
 
 type flag =
