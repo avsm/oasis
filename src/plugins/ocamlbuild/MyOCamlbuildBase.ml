@@ -191,6 +191,7 @@ let dispatch_default t =
       dispatch t;
       MyOCamlbuildFindlib.dispatch;
       MyOCamlbuildXen.dispatch;
+      MyOCamlbuildNs3.dispatch;
     ]
 
 (* END EXPORT *)
